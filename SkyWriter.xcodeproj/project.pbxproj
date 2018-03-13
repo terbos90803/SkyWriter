@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		DE97BC8E2054EE1000CFDB0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE97BC8D2054EE1000CFDB0D /* AppDelegate.swift */; };
-		DE97BC902054EE1000CFDB0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE97BC8F2054EE1000CFDB0D /* ViewController.swift */; };
+		DE97BC902054EE1000CFDB0D /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE97BC8F2054EE1000CFDB0D /* ControlsViewController.swift */; };
 		DE97BC932054EE1000CFDB0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE97BC912054EE1000CFDB0D /* Main.storyboard */; };
 		DE97BC952054EE1000CFDB0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE97BC942054EE1000CFDB0D /* Assets.xcassets */; };
 		DE97BC982054EE1000CFDB0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE97BC962054EE1000CFDB0D /* LaunchScreen.storyboard */; };
 		DE97BCA32054EE1000CFDB0D /* SkyWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE97BCA22054EE1000CFDB0D /* SkyWriterTests.swift */; };
 		DE97BCAE2054EE1000CFDB0D /* SkyWriterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE97BCAD2054EE1000CFDB0D /* SkyWriterUITests.swift */; };
+		DED2CE202057645500FCC120 /* UUIDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2CE1F2057645500FCC120 /* UUIDKey.swift */; };
+		DED2CE222057701A00FCC120 /* BLECentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2CE212057701A00FCC120 /* BLECentralViewController.swift */; };
+		DED2CE242057702A00FCC120 /* PeripheralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED2CE232057702A00FCC120 /* PeripheralTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		DE97BC8A2054EE1000CFDB0D /* SkyWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE97BC8D2054EE1000CFDB0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DE97BC8F2054EE1000CFDB0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE97BC8F2054EE1000CFDB0D /* ControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
 		DE97BC922054EE1000CFDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE97BC942054EE1000CFDB0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE97BC972054EE1000CFDB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		DE97BCA92054EE1000CFDB0D /* SkyWriterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyWriterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE97BCAD2054EE1000CFDB0D /* SkyWriterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyWriterUITests.swift; sourceTree = "<group>"; };
 		DE97BCAF2054EE1000CFDB0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DED2CE1F2057645500FCC120 /* UUIDKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDKey.swift; sourceTree = "<group>"; };
+		DED2CE212057701A00FCC120 /* BLECentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentralViewController.swift; sourceTree = "<group>"; };
+		DED2CE232057702A00FCC120 /* PeripheralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				DE97BC8D2054EE1000CFDB0D /* AppDelegate.swift */,
-				DE97BC8F2054EE1000CFDB0D /* ViewController.swift */,
+				DE97BC8F2054EE1000CFDB0D /* ControlsViewController.swift */,
+				DED2CE212057701A00FCC120 /* BLECentralViewController.swift */,
+				DED2CE232057702A00FCC120 /* PeripheralTableViewCell.swift */,
+				DED2CE1F2057645500FCC120 /* UUIDKey.swift */,
 				DE97BC912054EE1000CFDB0D /* Main.storyboard */,
 				DE97BC942054EE1000CFDB0D /* Assets.xcassets */,
 				DE97BC962054EE1000CFDB0D /* LaunchScreen.storyboard */,
@@ -259,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE97BC902054EE1000CFDB0D /* ViewController.swift in Sources */,
+				DED2CE222057701A00FCC120 /* BLECentralViewController.swift in Sources */,
+				DED2CE202057645500FCC120 /* UUIDKey.swift in Sources */,
+				DE97BC902054EE1000CFDB0D /* ControlsViewController.swift in Sources */,
+				DED2CE242057702A00FCC120 /* PeripheralTableViewCell.swift in Sources */,
 				DE97BC8E2054EE1000CFDB0D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5527NYC89S;
 				INFOPLIST_FILE = SkyWriter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.terbos.SkyWriter;
@@ -441,6 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5527NYC89S;
 				INFOPLIST_FILE = SkyWriter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.terbos.SkyWriter;

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ControlsViewController.swift
 //  SkyWriter
 //
 //  Created by Terry Wells on 3/10/18.
@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ControlsViewController: UIViewController {
+
+    var peripheralManager: CBPeripheralManager?
+    var peripheral: CBPeripheral!
 
     override func viewDidLoad() {
         super.viewDidLoad()
