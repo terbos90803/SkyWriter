@@ -16,7 +16,10 @@ var customMsgCharacteristic : CBCharacteristic?
 var customFGCharacteristic : CBCharacteristic?
 var customBGCharacteristic : CBCharacteristic?
 var blePeripheral : CBPeripheral?
-var characteristicASCIIValue = NSString()
+var presetValue = UInt8()
+var customMsgASCIIValue = NSString()
+var customFGASCIIValue = NSString()
+var customBGASCIIValue = NSString()
 
 
 
@@ -233,23 +236,23 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
             
             if characteristic.uuid.isEqual(BLE_Characteristic_uuid_Preset)  {
                 presetCharacteristic = characteristic
-                peripheral.readValue(for: characteristic)
                 print("Preset Characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
             }
             else if characteristic.uuid.isEqual(BLE_Characteristic_uuid_customMsg){
                 customMsgCharacteristic = characteristic
-                peripheral.readValue(for: characteristic)
                 print("CustomMsg Characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
             }
             else if characteristic.uuid.isEqual(BLE_Characteristic_uuid_customFG){
-                customMsgCharacteristic = characteristic
-                peripheral.readValue(for: characteristic)
+                customFGCharacteristic = characteristic
                 print("CustomFG Characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
             }
             else if characteristic.uuid.isEqual(BLE_Characteristic_uuid_customBG){
-                customMsgCharacteristic = characteristic
-                peripheral.readValue(for: characteristic)
+                customBGCharacteristic = characteristic
                 print("CustomBG Characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
             }
             peripheral.discoverDescriptors(for: characteristic)
         }
@@ -262,11 +265,31 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if characteristic == presetCharacteristic {
-            if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
-                characteristicASCIIValue = ASCIIstring
-                print("Value Recieved: \((characteristicASCIIValue as String))")
+            if let value = characteristic.value, !value.isEmpty {
+                presetValue = value[0]
+                print("Value Recieved: \(presetValue)")
                 NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
-                
+            }
+        }
+        if characteristic == customMsgCharacteristic {
+            if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
+                customMsgASCIIValue = ASCIIstring
+                print("Value Recieved: \((customMsgASCIIValue as String))")
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
+            }
+        }
+        if characteristic == customFGCharacteristic {
+            if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
+                customFGASCIIValue = ASCIIstring
+                print("Value Recieved: \((customFGASCIIValue as String))")
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
+            }
+        }
+        if characteristic == customBGCharacteristic {
+            if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
+                customBGASCIIValue = ASCIIstring
+                print("Value Recieved: \((customBGASCIIValue as String))")
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
             }
         }
     }
@@ -284,8 +307,8 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
             for x in characteristic.descriptors!{
                 let descript = x as CBDescriptor!
                 print("function name: DidDiscoverDescriptorForChar \(String(describing: descript?.description))")
-                print("Rx Value \(String(describing: rxCharacteristic?.value))")
-                print("Tx Value \(String(describing: txCharacteristic?.value))")
+                print("Preset Value \(String(describing: presetCharacteristic?.value))")
+                print("CustomMsg Value \(String(describing: customMsgCharacteristic?.value))")
             }
         }
     }
@@ -367,7 +390,7 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
             startScan()
             
         } else {
-            //If Bluetooth is off, display a UI alert message saying "Bluetooth is not enable" and "Make sure that your bluetooth is turned on"
+            //If Bluetooth is off, display a UI alert message saying "Bluetooth is not enabled" and "Make sure that your bluetooth is turned on"
             print("Bluetooth Disabled- Make sure your Bluetooth is turned on")
             
             let alertVC = UIAlertController(title: "Bluetooth is not enabled", message: "Make sure that your bluetooth is turned on", preferredStyle: UIAlertControllerStyle.alert)
