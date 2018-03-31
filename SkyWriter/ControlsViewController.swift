@@ -19,14 +19,10 @@ class ControlsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
     //Data
     var peripheral: CBPeripheral!
     var presetPicker: UIPickerView!
-    var pickerData: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0...2 {
-            pickerData.append(String(i))
-        }
         presetPicker = UIPickerView()
         presetPicker.delegate = self
         presetPicker.dataSource = self
@@ -74,19 +70,18 @@ class ControlsViewController: UIViewController, UITextFieldDelegate, UIPickerVie
 
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        return Int(numPresetsValue)
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        return String(row)
     }
     
     // Catpure the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selected = pickerData[row]
-        presetTextUI.text = selected
-        presetValue = UInt8(selected)!
+        presetTextUI.text = String(row)
+        presetValue = UInt8(row)
         writeValue(presetValue, characteristic: presetCharacteristic!)
         self.view.endEditing(true)
     }

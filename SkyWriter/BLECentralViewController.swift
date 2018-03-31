@@ -12,11 +12,13 @@ import CoreBluetooth
 
 
 var presetCharacteristic : CBCharacteristic?
+var numPresetsCharacteristic : CBCharacteristic?
 var customMsgCharacteristic : CBCharacteristic?
 var customFGCharacteristic : CBCharacteristic?
 var customBGCharacteristic : CBCharacteristic?
 var blePeripheral : CBPeripheral?
 var presetValue = UInt8()
+var numPresetsValue = UInt8()
 var customMsgASCIIValue = NSString()
 var customFGASCIIValue = NSString()
 var customBGASCIIValue = NSString()
@@ -239,6 +241,11 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
                 print("Preset Characteristic: \(characteristic.uuid)")
                 peripheral.readValue(for: characteristic)
             }
+            else if characteristic.uuid.isEqual(BLE_Characteristic_uuid_numPresets)  {
+                numPresetsCharacteristic = characteristic
+                print("Number of Presets Characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
+            }
             else if characteristic.uuid.isEqual(BLE_Characteristic_uuid_customMsg){
                 customMsgCharacteristic = characteristic
                 print("CustomMsg Characteristic: \(characteristic.uuid)")
@@ -271,21 +278,28 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
                 NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
             }
         }
-        if characteristic == customMsgCharacteristic {
+        else if characteristic == numPresetsCharacteristic {
+            if let value = characteristic.value, !value.isEmpty {
+                numPresetsValue = value[0]
+                print("Value Recieved: \(numPresetsValue)")
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
+            }
+        }
+        else if characteristic == customMsgCharacteristic {
             if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
                 customMsgASCIIValue = ASCIIstring
                 print("Value Recieved: \((customMsgASCIIValue as String))")
                 NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
             }
         }
-        if characteristic == customFGCharacteristic {
+        else if characteristic == customFGCharacteristic {
             if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
                 customFGASCIIValue = ASCIIstring
                 print("Value Recieved: \((customFGASCIIValue as String))")
                 NotificationCenter.default.post(name:NSNotification.Name(rawValue: "Notify"), object: nil)
             }
         }
-        if characteristic == customBGCharacteristic {
+        else if characteristic == customBGCharacteristic {
             if let ASCIIstring = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue) {
                 customBGASCIIValue = ASCIIstring
                 print("Value Recieved: \((customBGASCIIValue as String))")
