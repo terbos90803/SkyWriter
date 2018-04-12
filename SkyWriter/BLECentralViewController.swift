@@ -319,7 +319,7 @@ class BLECentralViewController : UIViewController, CBCentralManagerDelegate, CBP
         if ((characteristic.descriptors) != nil) {
             
             for x in characteristic.descriptors!{
-                let descript = x as CBDescriptor!
+                let descript = x as CBDescriptor?
                 print("function name: DidDiscoverDescriptorForChar \(String(describing: descript?.description))")
                 print("Preset Value \(String(describing: presetCharacteristic?.value))")
                 print("CustomMsg Value \(String(describing: customMsgCharacteristic?.value))")
